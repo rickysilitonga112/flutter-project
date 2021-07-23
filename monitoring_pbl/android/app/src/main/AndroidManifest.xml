@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.test_app_dicoding">
+    package="com.example.monitoring_pbl">
    <application
-        android:label="DicodingApp"
+        android:label="monitoring_pbl"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

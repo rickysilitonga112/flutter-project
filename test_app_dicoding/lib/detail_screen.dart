@@ -10,6 +10,177 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      return constraints.maxWidth > 800
+          ? DetailWebPage(place: place)
+          : DetailMobilePage(place: place);
+    });
+  }
+}
+
+class DetailWebPage extends StatefulWidget {
+  DetailWebPage({Key? key, required this.place}) : super(key: key);
+
+  final TourismPlace place;
+
+  @override
+  _DetailWebPageState createState() => _DetailWebPageState();
+}
+
+class _DetailWebPageState extends State<DetailWebPage> {
+  final _scrollController = ScrollController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Wisata Bandung',
+              style: TextStyle(fontFamily: 'Staatliches', fontSize: 32),
+            ),
+            SizedBox(
+              height: 32,
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      ClipRRect(
+                        child: Image.asset(widget.place.imageAsset),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Container(
+                        height: 150,
+                        padding: EdgeInsets.only(bottom: 16),
+                        child: Scrollbar(
+                          isAlwaysShown: true,
+                          controller: _scrollController,
+                          interactive: true,
+                          child: ListView(
+                            controller: _scrollController,
+                            scrollDirection: Axis.horizontal,
+                            children: widget.place.imageUrls.map((url) {
+                              return Padding(
+                                padding: const EdgeInsets.all(4),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.network(url)),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 32,
+                ),
+                Expanded(
+                  child: Card(
+                    child: Container(
+                      padding: EdgeInsets.all(16),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Container(
+                            child: Text(
+                              widget.place.name,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontFamily: 'Staatliches',
+                              ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(Icons.calendar_today),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text(widget.place.openDays)
+                                ],
+                              ),
+                              FavoriteButton(),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.access_time),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(widget.place.ticketPrice)
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.monetization_on),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(widget.place.ticketPrice)
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            widget.place.description,
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: 'Oxygen',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _scrollController.dispose();
+  }
+}
+
+class DetailMobilePage extends StatelessWidget {
+  const DetailMobilePage({
+    Key? key,
+    required this.place,
+  }) : super(key: key);
+
+  final TourismPlace place;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -112,7 +283,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
     return IconButton(
       icon: Icon(
         isFavorite ? Icons.favorite : Icons.favorite_border,
-        color: Colors.white,
+        color: Colors.red,
       ),
       onPressed: () {
         setState(() {

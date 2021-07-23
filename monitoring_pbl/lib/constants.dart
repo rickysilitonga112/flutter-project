@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const Color kNavbarColor = Color(0xffCAE4DB);
+const Color kPrimaryColor = Color(0xffCAE4DB);
 const Color kNavbarTextColor = Color(0xff413D3D);
 const Color kTextColor = Color(0xff5B5B5B);
 
@@ -12,3 +12,19 @@ const TextStyle kInputTextStyle =
 
 const TextStyle kTitleTextStyle =
     TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold, color: kTextColor);
+
+const InputDecoration kTextFieldDecoration = InputDecoration(
+  hintText: 'value',
+  hintStyle: TextStyle(
+    color: Colors.black54,
+    fontSize: 14,
+  ),
+  contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 8.0),
+  border: OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+  ),
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.black87, width: 2.0),
+    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+  ),
+);

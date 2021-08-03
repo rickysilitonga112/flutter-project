@@ -21,10 +21,10 @@ const InputDecoration kTextFieldDecoration = InputDecoration(
   ),
   contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 8.0),
   border: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+    borderRadius: BorderRadius.all(Radius.circular(8.0)),
   ),
   focusedBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Colors.black87, width: 2.0),
-    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+    borderRadius: BorderRadius.all(Radius.circular(8.0)),
   ),
 );

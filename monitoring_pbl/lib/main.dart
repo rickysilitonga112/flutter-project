@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:monitoring_pbl/pages/detail_inventory.dart';
 import 'package:monitoring_pbl/pages/room_screen.dart';
-import 'package:monitoring_pbl/pages/scan_screen.dart';
 import 'pages/login_screen.dart';
 
 void main() {
@@ -19,8 +17,6 @@ class MyApp extends StatelessWidget {
       routes: {
         LoginScreen.id: (context) => LoginScreen(),
         RoomScreen.id: (context) => RoomScreen(),
-        ScanScreen.id: (context) => ScanScreen(),
-        DetailInventory.id: (context) => DetailInventory()
       },
     );
   }

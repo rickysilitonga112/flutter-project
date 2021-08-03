@@ -19,7 +19,7 @@ class Header extends StatelessWidget {
           style: kTitleTextStyle,
         ),
         SizedBox(
-          height: 16.0,
+          height: 20.0,
         ),
       ],
     );

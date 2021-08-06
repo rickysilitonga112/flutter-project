@@ -4,6 +4,7 @@ import 'package:monitoring_pbl/constants.dart';
 class ReusableInput extends StatelessWidget {
   final String inputHint;
   final bool isPassword;
+  String? inputValue;
 
   ReusableInput({
     required this.inputHint,
@@ -17,7 +18,10 @@ class ReusableInput extends StatelessWidget {
       child: TextField(
         obscureText: isPassword,
         textAlign: TextAlign.center,
-        onChanged: (value) {},
+        onChanged: (value) {
+          inputValue = value;
+          print(inputValue);
+        },
         decoration: kTextFieldDecoration.copyWith(
           hintText: inputHint,
         ),
